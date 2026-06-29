@@ -8,7 +8,6 @@ const bcrypt = require("bcrypt");
 const db = require("./config/db");
 const uploadRoute = require("./routes/uploads");
 const path = require("path");
-
 const fs = require("fs");
 
 const uploadDir = path.join(__dirname, "uploads");
@@ -17,14 +16,17 @@ if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-
 const app = express();
-
 const server = http.createServer(app);
+
+const allowedOrigins = [
+    "http://localhost:5173",
+    process.env.CLIENT_URL
+];
 
 const io = new Server(server, {
     cors: {
-        origin: process.env.CLIENT_URL || "http://localhost:5173",
+        origin: allowedOrigins,
         methods: ["GET", "POST"],
         credentials: true
     }
@@ -33,12 +35,15 @@ const io = new Server(server, {
 const chatRoute = require("./routes/chat")(io);
 
 app.use(cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: allowedOrigins,
     credentials: true
 }));
+
 app.use(express.json());
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-app.use("/upload", uploadRoute); 
+
+app.use("/upload", uploadRoute);
 app.use("/chat", chatRoute);
 
 io.on("connection", (socket) => {
