@@ -104,15 +104,22 @@ app.post("/register", async (req, res) => {
 app.post("/login", (req, res) => {
 
     const { email, password } = req.body;
+
+    console.log("Login Request:", email);
+
     const sql = "SELECT * FROM users WHERE email = ?";
 
     db.query(sql, [email], async (err, result) => {
 
         if (err) {
+            console.log("SQL Error:", err);
+
             return res.status(500).json({
-                message: "Server Error"
+                message: "Database Error"
             });
         }
+
+        console.log("Query Result:", result);
 
         if (result.length === 0) {
             return res.status(401).json({
@@ -120,23 +127,41 @@ app.post("/login", (req, res) => {
             });
         }
 
-        const user = result[0];
-        const match = await bcrypt.compare(password, user.password);
+        try {
 
-        if (!match) {
-            return res.status(401).json({
-                message: "Incorrect Password"
+            const user = result[0];
+
+            console.log("User:", user);
+
+            const match = await bcrypt.compare(password, user.password);
+
+            console.log("Password Match:", match);
+
+            if (!match) {
+                return res.status(401).json({
+                    message: "Incorrect Password"
+                });
+            }
+
+            res.json({
+                message: "Login Successful",
+                user: {
+                    name: user.name,
+                    email: user.email,
+                    studentId: user.student_id
+                }
             });
+
+        } catch (e) {
+
+            console.log("Login Error:", e);
+
+            res.status(500).json({
+                message: "Server Error"
+            });
+
         }
 
-        res.json({
-            message: "Login Successful",
-            user: {
-                name: user.name,
-                email: user.email,
-                studentId: user.student_id
-            }
-        });
     });
 
 });
