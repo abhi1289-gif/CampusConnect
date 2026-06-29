@@ -75,10 +75,8 @@ export default function Physics() {
 
 useEffect(() => {
 
-    // Load all previous messages from MySQL
     loadMessages();
 
-    // Listen for new messages
     socket.on("receive_message", (newMessage) => {
 
         if (
@@ -102,7 +100,7 @@ useEffect(() => {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/chat/send",
+            `${import.meta.env.VITE_API_URL}/chat/send`,
             {
                 method: "POST",
 
