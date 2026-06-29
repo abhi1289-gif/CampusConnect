@@ -76,12 +76,13 @@ export default function Ics() {
 useEffect(() => {
 
     loadMessages();
+    loadAssignments();
 
     socket.on("receive_message", (newMessage) => {
 
         if (
             newMessage.branch === "ES" &&
-            newMessage.year === 1 &&
+            Number(newMessage.year) === 1 &&
             newMessage.subject === subject
         ) {
             setMessages((prev) => [...prev, newMessage]);
@@ -89,7 +90,22 @@ useEffect(() => {
 
     });
 
-    return () => socket.off("receive_message");
+    socket.on("assignment_uploaded", (data) => {
+
+        if (
+            data.branch === "ES" &&
+            Number(data.year) === 1 &&
+            data.subject === subject
+        ) {
+            loadAssignments();
+        }
+
+    });
+
+    return () => {
+        socket.off("receive_message");
+        socket.off("assignment_uploaded");
+    };
 
 }, []);
 

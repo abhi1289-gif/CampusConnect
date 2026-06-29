@@ -6,7 +6,7 @@ const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const db = require("./config/db");
-const uploadRoute = require("./routes/uploads");
+const uploadRoute = require("./routes/uploads")(io);
 const path = require("path");
 const fs = require("fs");
 
@@ -33,6 +33,7 @@ const io = new Server(server, {
 });
 
 const chatRoute = require("./routes/chat")(io);
+
 
 app.use(cors({
     origin: allowedOrigins,
