@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.login-container {
+    height: 100vh;
+    background: #f4f6fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    width: 380px;
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.login-card h1 {
+    text-align: center;
+    color: #1f3c88;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    text-align: center;
+    color: gray;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.input-group input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+}
+
+.input-group input:focus {
+    border-color: #1f3c88;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: #1f3c88;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    background: #16306d;
+}
+
+.register-text {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-text span {
+    color: #1f3c88;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.error-input{
+    border:2px solid red !important;
+}
+
+.error-text{
+    color:red;
+    margin-top:5px;
+    font-size:13px;
+    font-weight:500;
+}
+
+.login-btn:disabled{
+    background:#999;
+    cursor:not-allowed;
+}
+
+#reg button{
+    background-color: white;
+    border: none;
+    color: blue;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.years-container{
+    min-height:100vh;
+    background:#f5f7fb;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.years-container h1{
+    color:#1f3c88;
+    margin-bottom:10px;
+}
+
+.years-container p{
+    color:#666;
+    margin-bottom:40px;
+}
+
+.years-grid{
+    display:grid;
+    grid-template-columns:repeat(2,250px);
+    gap:30px;
+}
+
+.year-card{
+    background:white;
+    border-radius:15px;
+    padding:40px 20px;
+    text-align:center;
+    cursor:pointer;
+    box-shadow:0 10px 20px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.year-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 30px rgba(0,0,0,.18);
+}
+
+.year-card h2{
+    color:#1f3c88;
+    margin-bottom:10px;
+}
+
+.year-card p{
+    color:#777;
+}
