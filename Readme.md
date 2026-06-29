@@ -127,10 +127,6 @@ DB_NAME=campusconnect
 - Admin panel
 - Mobile-friendly UI
 
-## Screenshots
-
-(Add screenshots of Login, Assignment Upload, and Chat here.)
-
 ## Author
 
 **Abhishek Sonparote**
