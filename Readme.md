@@ -4,6 +4,12 @@ CampusConnect is a full-stack web application designed to help college students 
 
 The platform provides a centralized space where students can upload and download study materials and communicate with classmates through dedicated discussion groups for each subject.
 
+## Live Demo
+
+**Application:** https://campus-connect-theta-seven.vercel.app/
+
+> **Note:** Since the backend is hosted on Render's free tier, the first request may take up to 50 seconds if the server is inactive.
+
 ## Features
 
 - Student Registration and Login
